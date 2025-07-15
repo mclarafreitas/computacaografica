@@ -4,10 +4,13 @@ Maria Clara Moura de Freitas (20230093652) <maria.clarafreitas@hotmail.com>
 :icons: font
 :url-quickref: https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/
 
-Essa página detalha os exercícios realizados para a matéria de Computação Gráfica na UFRN em 2025.1. Foi utilizado OpenGL e para rodar os códigos em algumas máquinas é necessário a instalação de algumas coisas, assim como, em alguns códigos vão usar alguma extensão a mais que precisa ser instalada. Para facilitar a execução foi utilizado o makefile disponibilizado pelo professor adaptado para rodar em um sistema MacOS, assim como, os headers dos codigos. Todos os códigos estão disponiveis em meu https://github.com/mclarafreitas/computacaografica[Github,role=external,window=_blank] e todos os exercicios estão localizados na pagina pessoal do professor https://agostinhobritojr.github.io/tutorial/opengl/index.html[Agostinho Brito,role=external,window=_blank].
+Esta página documenta os exercícios desenvolvidos para a disciplina de Computação Gráfica, ofertada pela UFRN no semestre 2025.1. Os programas foram implementados utilizando a API OpenGL, e sua execução pode requerer a instalação de dependências adicionais, especialmente em sistemas que não possuem bibliotecas gráficas pré-configuradas.
+Alguns exercícios utilizam extensões específicas da OpenGL, que também devem ser previamente instaladas para garantir o funcionamento correto dos programas. Para facilitar a compilação e execução dos códigos, foi utilizado o Makefile fornecido pelo professor, com adaptações para sistemas macOS, bem como os arquivos de headers necessários.
+
+Todos os códigos estão disponiveis em meu https://github.com/mclarafreitas/computacaografica[Github,role=external,window=_blank] e todos os exercicios estão localizados na página pessoal do professor https://agostinhobritojr.github.io/tutorial/opengl/index.html[Agostinho Brito,role=external,window=_blank].
 
 == Capítulo 2
-Para começarmos, testamos o codigo disponibilizado pelo professor para preparar todo o ambiente de execução para todas as atividades que serão realizadas. O código disponibilizado se chama teste-make.c
+Como etapa inicial, realizamos testes com o código *teste-make.c*, disponibilizado pelo professor, com o objetivo de configurar e validar o ambiente de execução necessário para o desenvolvimento das atividades da disciplina. Esse teste inicial garante que as bibliotecas, extensões e o Makefile estejam funcionando corretamente no sistema operacional utilizado.
 
 ```
 [teste-make.c]
@@ -64,7 +67,7 @@ void display(void){
   glFlush();
 }
 ```
-Assim como, um programa make tambem foi disponibilizado para deixar as execuçoes mais rapidas (adaptei para funcionar em Macos)
+Além disso, um arquivo *Makefile* foi fornecido para automatizar o processo de compilação e tornar a execução dos programas mais ágil. Esse arquivo foi adaptado para garantir compatibilidade com o sistema macOS, permitindo a compilação dos exercícios de forma padronizada e eficiente.
 
 ```
 [Makefile]
@@ -107,10 +110,12 @@ clean:
 	rm -f *.o *~ a.out
 
 ```
-=== Exercicio 1
-Com isso, vamos para os exercícios em si. Foi pedido para que criassemos um programa chamado *quadrados4.c* com base no exemplo *teste-make.c* e tem como objetivo exibir uma janela gráfica de 256x256 pixels, com fundo branco e quatro quadrados de cores diferentes organizados nas quatro regiões da janela.
+=== Exercício 1
+Com o ambiente de desenvolvimento devidamente configurado, iniciamos a implementação dos exercícios propostos. O primeiro deles consiste na criação do programa *quadrados4.c*, desenvolvido com base no exemplo *teste-make.c*.
 
-O programa utiliza a biblioteca OpenGL com GLUT para criar uma janela gráfica de 256x256 pixels com fundo branco. A coordenada do espaço foi normalizada entre 0 e 1 com `glOrtho`. Na função `display()`, são desenhados quatro quadrados coloridos – vermelho, verde, azul e amarelo – posicionados nos quatro cantos da janela. Cada quadrado é definido por coordenadas específicas com `glBegin(GL_POLYGON)` e recebe sua cor com `glColor3f`. Por fim, a função `glFlush()` assegura que todos os desenhos sejam renderizados na tela.
+O objetivo do exercício é exibir uma janela gráfica de 256x256 pixels, com fundo branco, contendo quatro quadrados de cores distintas, posicionados nas quatro regiões da janela: superior esquerda, superior direita, inferior esquerda e inferior direita. A atividade tem como foco a prática de posicionamento e preenchimento de primitivas gráficas utilizando a biblioteca OpenGL.
+
+O programa foi implementado com o uso da biblioteca OpenGL em conjunto com GLUT, responsável pela criação e controle da janela gráfica. A área de visualização foi configurada com a função glOrtho, normalizando o sistema de coordenadas entre 0 e 1, o que facilita o posicionamento relativo dos elementos gráficos. Na função display(), são desenhados quatro quadrados coloridos — vermelho, verde, azul e amarelo — utilizando a função glBegin(GL_POLYGON) para definir os vértices de cada forma. As cores são atribuídas com a função glColor3f, e as posições foram escolhidas de forma a distribuir os quadrados nos quatro cantos da janela. A chamada final a glFlush() garante que todos os comandos de desenho sejam executados e que o conteúdo seja devidamente exibido na tela.
 
 ```
 [quadrados4.c]
@@ -180,7 +185,7 @@ void display(void){
 .Saída do programa quadrado4.c
 image::1.png[quadrados4.c]
 
-=== Exercicio 2
+=== Exercício 2
 É pedido para que façamos outro programa com esse mesmo exemplo. A atividade propõe a criação do programa quadradoscolor.c, com base no exemplo teste-make.c. O objetivo é desenhar um quadrado central em uma janela de 256x256 pixels com fundo branco, onde cada vértice possua uma cor diferente. Essas cores devem ser calculadas a partir do modelo de cor HSI (Hue, Saturation, Intensity). O valor de Hue (H) de cada vértice deve variar com o tempo, criando uma animação de transição de cores. Para permitir a visualização do efeito de degradê, é necessário comentar a linha glShadeModel(GL_FLAT), habilitando assim a interpolação de cores entre os vértices com GL_SMOOTH.
 
 O programa utiliza a biblioteca OpenGL com GLUT para criar a janela gráfica e desenhar o quadrado. A cor de fundo é definida como branca com glClearColor. O espaço é normalizado com glOrtho para trabalhar com coordenadas entre 0 e 1.
@@ -286,10 +291,10 @@ int main(int argc, char** argv){
 image::2.2.gif[quadradoscolor.c]
 
 
-== Capitulo 3
-Aqui já vamos para uma tarefa que tem o objetivo de nos fazer entender alguns recursos fundamentais da biblioteca OpenGL e GLUT. O exemplo que iremos realizar tem o objetivo de desenhar linhas e pontos.
+== Capítulo 3
+A próxima atividade tem como objetivo introduzir e reforçar a compreensão de recursos fundamentais da biblioteca OpenGL e da GLUT, especialmente no que diz respeito à renderização básica de linhas e pontos na tela.
 
-=== Exercicio 1
+=== Exercício 1
 O programa *quadrado.c* foi desenvolvido com base no exemplo *linha.c* e tem como objetivo desenhar um quadrado vermelho em uma janela gráfica de 256x256 pixels com fundo branco. O quadrado é definido pelos vértices superiores e inferiores nas coordenadas (30, 226) e (226, 30), respectivamente.
 
 Ao ser executado, o programa inicializa o sistema de coordenadas com glOrtho() e configura a cor de fundo com glClearColor(). O quadrado é desenhado com a função glBegin(GL_POLYGON), utilizando coordenadas no espaço 2D. O comportamento interativo é implementado na função keyboard(): Quando a tecla ‘a’ é pressionada, a cor do quadrado muda para azul e ao pressionar a tecla ‘v’, o quadrado retorna à cor vermelha.
@@ -359,7 +364,7 @@ void keyboard(unsigned char key, int x, int y){
 .Exercício 3.1
 image::3.1.gif[Saída do exercício 3.1]
 
-=== Exercicio 2
+=== Exercício 2
 O programa *bresenhamlinhas.c* implementa o algoritmo de Bresenham para o traçado eficiente de linhas utilizando pontos discretos. A proposta da atividade é desenhar uma reta verde do ponto (40, 200) até o ponto (200, 10), usando GL_POINTS como parâmetro da função glBegin(), o que indica que cada ponto da linha será desenhado individualmente.
 
 A janela gráfica é configurada com dimensões 256x256 pixels e fundo branco. O sistema de coordenadas é definido com glOrtho() para facilitar o mapeamento direto de coordenadas 2D.
@@ -437,10 +442,10 @@ void bresenhamLine(int x0, int y0, int x1, int y1) {
     glEnd();
 }
 ```
-.Exercicio 3.2
-image::3.2.png[Saída do exercicio 3.2]
+.Exercício 3.2
+image::3.2.png[Saída do exercício 3.2]
 
-=== Exercicio 3
+=== Exercício 3
 O programa *bresenhamcirculo.c* implementa o algoritmo de Bresenham para traçado de circunferências (também conhecido como Midpoint Circle Algorithm), utilizando a primitiva GL_POINTS da OpenGL para desenhar ponto a ponto a circunferência. A atividade solicitava o desenho de uma circunferência azul com raio 50, centrada no ponto (128, 128), o que é feito pela chamada bresenhamCircle(128, 128, 50).
 
 A janela gráfica tem dimensões 256x256 pixels, com fundo branco e sistema de coordenadas ortogonais definido por glOrtho(). O algoritmo inicia com o ponto mais à direita do círculo (x = 0, y = r) e, a cada iteração, decide o próximo ponto com base em um valor de decisão d, evitando o uso de operações com ponto flutuante. Devido à simetria da circunferência, para cada ponto calculado no primeiro octante, os demais sete pontos simétricos são desenhados pela função plotCirclePoints().
@@ -521,13 +526,13 @@ void plotCirclePoints(int xc, int yc, int x, int y) {
 
 ```
 
-.Exercicio 3.3
-image::3.3.png[Saída do exercicio 3.3]
+.Exercício 3.3
+image::3.3.png[Saída do exercício 3.3]
 
-== Capitulo 4
-Esse capitulo tem o objetivo de ensinar funções basicas do OpenGl que tratam do preenchimento de regiões.
+== Capítulo 4
+Este capítulo tem como objetivo apresentar funções básicas do OpenGL relacionadas ao preenchimento de regiões.
 
-=== Exercicio 1
+=== Exercício 1
 O programa *selecao.c* foi desenvolvido com base no exemplo *preenchimento.c* e tem como objetivo desenhar quatro polígonos retangulares com as mesmas coordenadas do programa de referência, exibidos em uma janela de 256x256 pixels com fundo branco. Todos os polígonos são inicialmente preenchidos com cor amarela e possuem bordas pretas.
 
 A lógica de desenho é baseada em uma estrutura Polygon, que armazena as coordenadas, a cor de preenchimento e a cor da borda de cada polígono. O programa possui interatividade com o mouse e com o teclado:
@@ -669,7 +674,7 @@ int main(int argc, char **argv) {
 .Exercício 4.1
 image::4.1.gif[Saída do exercício 4.1]
 
-=== Exercicio 2
+=== Exercício 2
 O programa *selecaobuffer.c* é uma variação do código *selecao.c*, agora implementado utilizando buffer simples (GLUT_SINGLE) em vez de buffer duplo. Ele mantém as mesmas funcionalidades do exercício anterior: desenha quatro polígonos retangulares em uma janela de 256x256 pixels, com preenchimento inicial amarelo e bordas pretas.
 A principal diferença em relação ao exercício anterior está na configuração para o uso do buffer simples.
 
@@ -804,7 +809,7 @@ int main(int argc, char **argv) {
 .Exercício 4.2
 image::4.2.gif[Saída do exercício 4.2]
 
-=== Exercicio 3
+=== Exercício 3
 O programa *cf.c* tem como objetivo desenhar um hexágono centrado em uma janela de 300x300 pixels, com fundo branco e preenchido com a cor azul, utilizando um padrão de preenchimento personalizado com as iniciais “CF”, representando "Clara Freitas".
 
 O padrão foi definido como uma matriz binária de 32x32 bits codificada em um array de GLubyte, onde os bits desenham as letras C e F de forma estilizada. Para desenhar o hexágono, o programa calcula os seis vértices igualmente espaçados ao longo de um círculo com raio 100, centralizado no ponto (150, 150), utilizando funções trigonométricas. O preenchimento com padrão é ativado por meio da função glEnable(GL_POLYGON_STIPPLE), e o padrão propriamente dito é aplicado com glPolygonStipple(). O hexágono é desenhado com glBegin(GL_POLYGON) e a cor azul é definida com glColor3f(). Após o desenho, o padrão é desabilitado para evitar que afete futuras renderizações. O sistema de coordenadas ortogonais foi definido com gluOrtho2D, e a renderização é feita com buffer simples, utilizando glFlush() para atualizar a janela.
@@ -897,13 +902,13 @@ int main(int argc, char **argv) {
 
 ```
 
-.Exercicio 4.3
-image::4.3.png[Saída do exercicio 4.3]
+.Exercício 4.3
+image::4.3.png[Saída do exercício 4.3]
 
-== Capitulo 5
-Esse capítulo tem o objetivo de compreender como as transformações geométricas são realizadas sobre os objetos em relação a um determinado sistema de coordenadas.
+== Capítulo 5
+Este capítulo tem como objetivo compreender como as transformações geométricas são aplicadas a objetos gráficos em relação a um sistema de coordenadas. 
 
-=== Exercicio 1
+=== Exercício 1
 O programa *braco-garra.c* estende o exemplo original do braço robótico (braco.c) ao adicionar uma garra composta por três dedos articuláveis: indicador, médio e polegar. O braço mantém sua estrutura com dois segmentos (ombro e antebraço), sendo possível rotacioná-los por meio das teclas 's/S' e 'e/E'. A principal adição é feita ao final do braço, onde são desenhados três cubos representando os dedos, cada um com transformações específicas de posição e rotação. O dedo indicador é manipulado pelas teclas 'i' e 'I', o médio por 'm' e 'M', e o polegar por 'p' e 'P', permitindo rotação individual de cada um. O polegar, diferentemente dos demais, é rotacionado em torno do eixo X, simulando um movimento mais anatômico. Cada dedo é posicionado em relação à extremidade do braço utilizando glTranslatef, rotacionado com glRotatef, e escalado com glScalef para representar a forma alongada. A exibição é feita com glutWireCube, e o uso do glPushMatrix e glPopMatrix garante que as transformações sejam isoladas para cada componente do modelo. O programa utiliza perspectiva com gluPerspective e buffer duplo para uma renderização suave.
 
 ```
@@ -1055,7 +1060,7 @@ int main(int argc, char** argv){
   return 0;
 }
 ```
-.Exercicio 5.1
+.Exercício 5.1
 image::5.1.png[Saída do exercicio 5.1]
 
 === Exercício 2
@@ -1232,8 +1237,8 @@ int main(int argc, char** argv){
 .Exercício 5.2
 image::5.2.png[Saída do Exercício 5.2]
 
-== Capitulo 6
-Esse capítulo tem o objetivo de nos fazer entender o funcionamento dos principais tipos de projeções geométricas: paralelas e de perspectiva.
+== Capítulo 6
+Este capítulo tem como objetivo compreender o funcionamento dos principais tipos de projeções geométricas utilizadas em ambientes gráficos, com ênfase nas projeções paralelas e projeções em perspectiva.
 
 === Exercício 1
 O programa *tiposdeprojecoes.c* foi implementado com base no exemplo *projecoes.c*, com o objetivo de permitir a visualização individual de diferentes faces de um objeto 3D por meio de teclas específicas. 
@@ -1606,8 +1611,8 @@ void keyboard(unsigned char key, int x, int y){
 .Exercício 6.2
 image::6.2.gif[Saída do Exercício 6.2]
 
-== Capitulo 7
-Esse capítulo tem o objetivo de mostrar como gerar em um plano as curvas paramétricas mais comuns no OpenGL: as curvas de Bézier e as NURBS.
+== Capítulo 7
+Este capítulo tem como objetivo demonstrar a geração, em um plano, das curvas paramétricas mais comuns utilizadas no OpenGL: as curvas de Bézier e as curvas NURBS (Non-Uniform Rational B-Splines). 
 
 === Exercício 1
 Neste exercício, foi implementado o programa *splinesnurbs.c*, baseado no exemplo *splines2d.c*, com o objetivo de desenhar curvas de Bézier e curvas NURBS utilizando OpenGL. A aplicação permite alternar entre os dois tipos de curva pressionando a tecla correspondente no teclado, além de possibilitar a movimentação dos pontos de controle com o mouse. A principal modificação feita foi a inclusão de três modos distintos de geração da curva NURBS, dependendo do tipo de vetor de nós utilizado: uniforme, uniforme aberto e não uniforme, ativados respectivamente pelas teclas u, o e n.
@@ -1804,8 +1809,8 @@ int main(int argc, char **argv) {
 .Exercício 7.1
 image::7.1.png[Saída do Exercício 7.1]
 
-== Capitulo 8
-O objetivo deste capitulo é mostrar como gerar no espaço as superfícies paramétricas de Bézier e NURBS.
+== Capítulo 8
+O objetivo deste capítulo é demonstrar a geração, no espaço tridimensional, das superfícies paramétricas de Bézier e NURBS (Non-Uniform Rational B-Splines). 
 
 === Exercício 1
 Neste exercício, foi desenvolvido o programa *splineinter.c*, cujo objetivo é permitir a modelagem interativa de superfícies utilizando curvas NURBS ou de Bézier. Baseando-se nas técnicas de seleção de objetos apresentadas no capítulo sobre superfícies em espaço tridimensional, o programa possibilita que o usuário selecione e mova pontos da malha de controle com o mouse, modificando dinamicamente a forma da superfície renderizada.
@@ -2126,8 +2131,8 @@ int main(int argc, char **argv) {
 .Exercício 8.1
 image::8.1.png[Saída do Exercício 8.1]
 
-== Capitulo 9
-Esse capítulo tem o propósito de introduzir o uso de display lists, mapeamento de texturas e uso de teclas especiais.
+== Capítulo 9
+Este capítulo tem como propósito introduzir conceitos avançados de OpenGL, incluindo o uso de display lists para otimização de renderização, técnicas de mapeamento de texturas para aplicação de imagens sobre superfícies e o tratamento de teclas especiais para interação com o usuário por meio do teclado.
 
 === Exercício 1
 O programa *superjato.c* é uma extensão do exemplo *jato.c*, que adiciona novos elementos visuais ao modelo original de avião a jato utilizando OpenGL. O principal objetivo da atividade foi incrementar o modelo 3D com a inclusão de uma turbina traseira e dois mísseis sob as asas, tornando a representação do avião mais detalhada e realista.
@@ -2390,8 +2395,8 @@ int main(int argc,char **argv){
 .Exercício 9.1
 image::9.1.png[Saída do Exercício 9.1]
 
-== Capitulo 10
-Esse capítulo tem o objetivo de ilustrar para o usuário os principais conceitos envolvidos na iluminação de uma cena e na definição das propriedades luminosas de um material.
+== Capítulo 10
+Este capítulo tem como objetivo ilustrar os principais conceitos envolvidos na iluminação de uma cena gráfica e na definição das propriedades ópticas dos materiais, como refletância, brilho e transparência. 
 
 === Exercício 1
 O programa *iluminacao2.c* foi desenvolvido a partir do código base *iluminacao.c*, com a adição de interatividade por meio do uso do mouse. A principal proposta da atividade era permitir que o usuário modificasse a transparência do objeto B ao mover o mouse horizontal ou verticalmente, desde que nenhuma tecla estivesse pressionada. Além disso, caso a tecla SHIFT estivesse ativa durante o movimento do mouse, o programa deveria ajustar os níveis de iluminação ambiente da luz principal da cena.
