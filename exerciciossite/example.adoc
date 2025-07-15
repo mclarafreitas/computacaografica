@@ -283,7 +283,7 @@ int main(int argc, char** argv){
 ```
 
 .Saída do programa quadradoscolor.c
-image::x.png[quadradoscolor.c]
+image::2.2.gif[quadradoscolor.c]
 
 
 == Capitulo 3
@@ -356,8 +356,8 @@ void keyboard(unsigned char key, int x, int y){
   }
 }
 ```
-.Image caption
-image::image-file-name.png[I am the image alt text.]
+.Exercício 3.1
+image::3.1.gif[Saída do exercício 3.1]
 
 === Exercicio 2
 O programa *bresenhamlinhas.c* implementa o algoritmo de Bresenham para o traçado eficiente de linhas utilizando pontos discretos. A proposta da atividade é desenhar uma reta verde do ponto (40, 200) até o ponto (200, 10), usando GL_POINTS como parâmetro da função glBegin(), o que indica que cada ponto da linha será desenhado individualmente.
@@ -666,8 +666,8 @@ int main(int argc, char **argv) {
     return 0;
 }
 ```
-.Image caption
-image::image-file-name.png[I am the image alt text.]
+.Exercício 4.1
+image::4.1.gif[Saída do exercício 4.1]
 
 === Exercicio 2
 O programa *selecaobuffer.c* é uma variação do código *selecao.c*, agora implementado utilizando buffer simples (GLUT_SINGLE) em vez de buffer duplo. Ele mantém as mesmas funcionalidades do exercício anterior: desenha quatro polígonos retangulares em uma janela de 256x256 pixels, com preenchimento inicial amarelo e bordas pretas.
@@ -801,8 +801,8 @@ int main(int argc, char **argv) {
 
 ```
 
-.Image caption
-image::image-file-name.png[I am the image alt text.]
+.Exercício 4.2
+image::4.2.gif[Saída do exercício 4.2]
 
 === Exercicio 3
 O programa *cf.c* tem como objetivo desenhar um hexágono centrado em uma janela de 300x300 pixels, com fundo branco e preenchido com a cor azul, utilizando um padrão de preenchimento personalizado com as iniciais “CF”, representando "Clara Freitas".
@@ -1443,6 +1443,9 @@ void keyboard(unsigned char key, int x, int y){
 }
 
 ```
+.Exercício 6.1
+image::6.1.gif[Saída do Exercício 6.1]
+
 === Exercício 2
 O programa *projecaoidle.c* foi desenvolvido a partir do exemplo *projecoes.c* com o objetivo de implementar uma animação contínua do objeto utilizando a função glutIdleFunc(). Essa função permite que uma rotina seja executada continuamente em segundo plano, enquanto a aplicação está ociosa, ou seja, sem eventos pendentes de entrada. 
 
@@ -1600,6 +1603,8 @@ void keyboard(unsigned char key, int x, int y){
   // pois a função idle() já faz isso continuamente.
 }
 ```
+.Exercício 6.2
+image::6.2.gif[Saída do Exercício 6.2]
 
 == Capitulo 7
 Esse capítulo tem o objetivo de mostrar como gerar em um plano as curvas paramétricas mais comuns no OpenGL: as curvas de Bézier e as NURBS.
@@ -2655,7 +2660,7 @@ int main(int argc, char **argv) {
 
 ```
 .Exercício 10.1
-image::10.1.png[Saída do Exercício 10.1]
+image::10.1.gif[Saída do Exercício 10.1]
 
 This is a paragraph with a *bold* word and an _italicized_ word.
 
